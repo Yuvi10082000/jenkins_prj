@@ -3,7 +3,6 @@ package jenkins.model;
 import hudson.Util;
 import hudson.model.ModelObject;
 import jenkins.model.ModelObjectWithContextMenu.ContextMenu;
-import jenkins.security.stapler.StaplerNotDispatchable;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerRequest2;
 import org.kohsuke.stapler.StaplerResponse;
@@ -24,7 +23,6 @@ public interface ModelObjectWithChildren extends ModelObject {
     /**
      * Generates the context menu to list up all the children.
      */
-    @StaplerNotDispatchable
     default ContextMenu doChildrenContextMenu(StaplerRequest2 request, StaplerResponse2 response) throws Exception {
         if (Util.isOverridden(ModelObjectWithChildren.class, getClass(), "doChildrenContextMenu", StaplerRequest.class, StaplerResponse.class)) {
             return doChildrenContextMenu(StaplerRequest.fromStaplerRequest2(request), StaplerResponse.fromStaplerResponse2(response));
@@ -37,7 +35,6 @@ public interface ModelObjectWithChildren extends ModelObject {
     /**
      * @deprecated use {@link #doChildrenContextMenu(StaplerRequest2, StaplerResponse2)}
      */
-    @StaplerNotDispatchable
     @Deprecated
     default ContextMenu doChildrenContextMenu(StaplerRequest request, StaplerResponse response) throws Exception {
         if (Util.isOverridden(ModelObjectWithChildren.class, getClass(), "doChildrenContextMenu", StaplerRequest2.class, StaplerResponse2.class)) {

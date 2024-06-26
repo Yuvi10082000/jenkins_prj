@@ -52,10 +52,7 @@ public class StaplerFilteredActionListener implements FilteredDoActionTriggerLis
     /**
      * Do not be noisy about default methods that exist only for compatibility reasons and are annotated with {@link StaplerNotDispatchable}
      */
-    private static final Set<String> STAPLER_NOT_DISPATCHABLE = Set.of(
-            "doCreateItem",
-            "doChildrenContextMenu",
-            "doContextMenu");
+    private static final Set<String> STAPLER_NOT_DISPATCHABLE = Set.of("doCreateItem");
 
     @Override
     public boolean onDoActionTrigger(Function f, StaplerRequest2 req, StaplerResponse2 rsp, Object node) {

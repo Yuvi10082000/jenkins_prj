@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import jenkins.management.Badge;
-import jenkins.security.stapler.StaplerNotDispatchable;
 import org.apache.commons.jelly.JellyContext;
 import org.apache.commons.jelly.JellyException;
 import org.apache.commons.jelly.JellyTagException;
@@ -64,7 +63,6 @@ public interface ModelObjectWithContextMenu extends ModelObject {
      * which implements the default behaviour. See {@link ContextMenu#from(ModelObjectWithContextMenu, StaplerRequest2, StaplerResponse2)}
      * for more details of what it does. This should suit most implementations.
      */
-    @StaplerNotDispatchable
     default ContextMenu doContextMenu(StaplerRequest2 request, StaplerResponse2 response) throws Exception {
         if (Util.isOverridden(ModelObjectWithContextMenu.class, getClass(), "doContextMenu", StaplerRequest.class, StaplerResponse.class)) {
             return doContextMenu(StaplerRequest.fromStaplerRequest2(request), StaplerResponse.fromStaplerResponse2(response));
@@ -78,7 +76,6 @@ public interface ModelObjectWithContextMenu extends ModelObject {
      * @deprecated use {@link #doContextMenu(StaplerRequest2, StaplerResponse2)}
      */
     @Deprecated
-    @StaplerNotDispatchable
     default ContextMenu doContextMenu(StaplerRequest request, StaplerResponse response) throws Exception {
         if (Util.isOverridden(ModelObjectWithContextMenu.class, getClass(), "doContextMenu", StaplerRequest2.class, StaplerResponse2.class)) {
             return doContextMenu(request.toStaplerRequest2(), response.toStaplerResponse2());
